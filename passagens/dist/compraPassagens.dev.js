@@ -1,3 +1,5 @@
+"use strict";
+
 /*
     Compra de passagem aérea
     
@@ -21,35 +23,37 @@
         
         Acrescenta taxa de bagagem R$ 60,00
 */
+var _require = require('./constantes.js'),
+    Voo = _require.Voo,
+    Destino = _require.Destino;
 
-const { Voo, Destino } = require('./constantes.js')
-const Passagem = require('./passagem.js')
-const readline = require('readline-sync');
+var Passagem = require('./passagem.js');
 
-const prompt = function(mensagem) {
-    return readline.question(`${mensagem}: `).slice(0,1).toLowerCase() === 's';
-}
+var readline = require('readline-sync');
 
-const opcao = function(mensagem) {
-    return parseInt(readline.question(`${mensagem}: `).slice(0,1))-1;
-}
+var prompt = function prompt(mensagem) {
+  return readline.question("".concat(mensagem, ": ")).slice(0, 1).toLowerCase() === 's';
+};
+
+var opcao = function opcao(mensagem) {
+  return parseInt(readline.question("".concat(mensagem, ": ")).slice(0, 1)) - 1;
+};
 
 console.log('Cálculo do preço de passagem aérea\n');
-
 var vip = prompt('É cliente VIP? S/N');
 var seguro = prompt('Deseja contratar seguro? S/N');
 var bagagem = prompt('Tem bagagem extra? S/N');
-
 console.log('Indique qual é a classe de Voô que deseja\n');
-var voos = Object.values(Voo)
-voos.forEach(voo => console.log(`${voo.indice} - ${voo.titulo}`));
-var classeDeVoo = voos[opcao(`\nClasse de Voô`)];
-
+var voos = Object.values(Voo);
+voos.forEach(function (voo) {
+  return console.log("".concat(voo.indice, " - ").concat(voo.titulo));
+});
+var classeDeVoo = voos[opcao("\nClasse de Vo\xF4")];
 console.log('Indique qual é o Destino\n');
-var destinos = Object.values(Destino)
-destinos.forEach(destino => console.log(`${destino.indice} - ${destino.titulo}`));
-var tipoDeDestino = destinos[opcao(`\nDestino`)];
-
+var destinos = Object.values(Destino);
+destinos.forEach(function (destino) {
+  return console.log("".concat(destino.indice, " - ").concat(destino.titulo));
+});
+var tipoDeDestino = destinos[opcao("\nDestino")];
 var passagem = new Passagem(vip, seguro, bagagem, classeDeVoo, tipoDeDestino);
-
-console.log(`O custo total da passagem é R$ ${passagem.total()}`);
+console.log("O custo total da passagem \xE9 R$ ".concat(passagem.total()));

@@ -5,7 +5,7 @@ class Produto {
         this.codigo = codigo;
         this.descricao = descricao;
         this.valor = valor;
-        this. fornecedor = fornecedor;
+        this.fornecedor = fornecedor;
     }
     
     get Codigo () { return this.codigo; }
